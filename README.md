@@ -1,4 +1,4 @@
-# 数探 Agent · DataScout Agent
+# 数探｜智能数据分析 Agent
 
 <p align="center">
   <img src="./static/Images/icon.png" alt="数探 Agent" width="112" />
@@ -11,6 +11,8 @@
 <p align="center">
   <a href="./README_EN.md">English</a> ·
   <a href="#快速开始">快速开始</a> ·
+  <a href="./docs/数探-Data-Analysis-Agent-PRD.md">产品 PRD</a> ·
+  <a href="./docs/数探-Data-Analysis-Agent-PRD.pdf">PRD PDF</a> ·
   <a href="./DEMO_GUIDE.md">5 分钟体验</a> ·
   <a href="./ARCHITECTURE.md">系统架构</a> ·
   <a href="./DEPLOYMENT.md">部署指南</a>
@@ -27,6 +29,10 @@
 数探 Agent 是一个面向业务分析的 AI 数据工作台。用户可以接入 Excel / CSV、SQL 数据库、Google Sheets 或 HTTP API，用自然语言提出问题，并在同一界面中完成数据预览、查询、统计分析、图表生成、结论追问和分析产物导出。
 
 它把一次分析拆成可观察的步骤：数据从哪里来、AI 调用了什么工具、查询得到了什么结果、图表基于哪些字段生成，都能在对话中直接核对。对需要稳定口径的场景，项目还提供确定性指标计算、数据质量检查和规则诊断能力，避免让模型代替程序做数值计算。
+
+## 产品设计
+
+项目以“数据可确认、过程可观察、结果可交付”为主线设计数据分析体验，覆盖多源数据接入、对话式分析、受控工具执行、个人知识库、历史会话与结果交付。完整的产品目标、用户场景、功能规则、验收标准和评测口径见：[在线阅读 PRD](./docs/数探-Data-Analysis-Agent-PRD.md)｜[下载 PDF](./docs/数探-Data-Analysis-Agent-PRD.pdf)。
 
 ## 产品亮点
 

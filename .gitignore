@@ -72,7 +72,24 @@ LLM/llm_config.json
 LLM/mcp_config.json
 data/datasource_config.json
 .playwright-mcp
-docs/
+# Public portfolio PRD: only the rendered document, its Markdown source, and
+# screenshots referenced by the document are versioned. Other docs stay local.
+docs/*
+!docs/数探-Data-Analysis-Agent-PRD.md
+!docs/数探-Data-Analysis-Agent-PRD.pdf
+!docs/images/
+docs/images/*
+!docs/images/2.png
+!docs/images/3.png
+!docs/images/4.png
+!docs/images/5.png
+!docs/images/6.png
+!docs/images/8.png
+!docs/images/9.png
+!docs/images/10.png
+!docs/images/11.png
+!docs/images/12.png
+!docs/images/image.png
 test.bat
 Notes for development.md
 
