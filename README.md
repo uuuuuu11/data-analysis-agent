@@ -12,7 +12,6 @@
   <a href="./README_EN.md">English</a> ·
   <a href="#快速开始">快速开始</a> ·
   <a href="./docs/数探-Data-Analysis-Agent-PRD.md">产品 PRD</a> ·
-  <a href="./docs/数探-Data-Analysis-Agent-PRD.pdf">PRD PDF</a> ·
   <a href="./DEMO_GUIDE.md">5 分钟体验</a> ·
   <a href="./ARCHITECTURE.md">系统架构</a> ·
   <a href="./DEPLOYMENT.md">部署指南</a>
@@ -32,7 +31,7 @@
 
 ## 产品设计
 
-项目以“数据可确认、过程可观察、结果可交付”为主线设计数据分析体验，覆盖多源数据接入、对话式分析、受控工具执行、个人知识库、历史会话与结果交付。完整的产品目标、用户场景、功能规则、验收标准和评测口径见：[在线阅读 PRD](./docs/数探-Data-Analysis-Agent-PRD.md)｜[下载 PDF](./docs/数探-Data-Analysis-Agent-PRD.pdf)。
+项目以“数据可确认、过程可观察、结果可交付”为主线设计数据分析体验，覆盖多源数据接入、对话式分析、受控工具执行、个人知识库、历史会话与结果交付。完整的产品目标、用户场景、功能规则、验收标准和评测口径见：[在线阅读 PRD](./docs/数探-Data-Analysis-Agent-PRD.md)。
 
 ## 产品亮点
 
