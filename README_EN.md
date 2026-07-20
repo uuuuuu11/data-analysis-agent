@@ -70,11 +70,11 @@ python app.py
 
 Open <http://localhost:5001/>. The health endpoint is <http://localhost:5001/api/health>.
 
-## Managed AI service
+## Model service configuration
 
-This repository does not provide a shared model API or hosted analytics service. The deployer configures a compatible model provider, model name, and API key in the server-side environment before starting the application. Users of that deployed instance do not enter a model endpoint or API key in the browser.
+When deploying DataScout, configure a compatible model provider, model name, and API key in the server-side `.env` file before starting the application. This configuration remains in the deployment environment and is not exposed to the browser. After deployment, users can upload data and start analyzing it without entering model settings or API keys.
 
-Production credentials are never included in the public repository. For self-hosting, an administrator provisions the model service on the server as described in [DEPLOYMENT.md](./DEPLOYMENT.md); those settings are not exposed to browsers or regular users.
+Keep credentials in the deployment environment rather than the repository. For detailed configuration steps, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## How to use it
 
