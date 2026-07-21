@@ -5,29 +5,38 @@
 </p>
 
 <p align="center">
-  <strong>Turn spreadsheets, databases, and business APIs into traceable analysis and reusable deliverables.</strong>
+  <strong>Turn Excel, CSV, and connected business data into traceable, reusable analysis deliverables.</strong>
 </p>
 
 <p align="center">
   <a href="./README.md">中文</a> ·
   <a href="#quick-start">Quick Start</a> ·
+  <a href="./docs/数探-Data-Analysis-Agent-PRD.md">Full PRD</a> ·
+  <a href="./docs/数探-Data-Analysis-Agent-PRD-精简版.md">Concise PRD</a> ·
+  <a href="./docs/product-decisions.md">Product Decisions</a> ·
   <a href="./ARCHITECTURE.md">Architecture</a> ·
   <a href="./DEPLOYMENT.md">Deployment</a>
 </p>
 
 ## What it is
 
-DataScout Agent is a conversational AI workspace for business data analysis. Connect Excel / CSV files, SQL databases, Google Sheets, HTTP APIs, or a local workspace; ask questions in natural language; then inspect the queries, tool execution, tables, charts, and conclusions in one interface.
+DataScout Agent is a conversational AI workspace for business data analysis. Its primary path starts with Excel / CSV files: upload data, inspect it, ask questions in natural language, and complete queries, statistical analysis, charts, follow-up questions, and exports in one interface. Users with configured data connections can also connect SQL databases, Google Sheets, HTTP APIs, or a local workspace.
 
 The system keeps analytical work observable. Users can see which source is active, which tool is running, what data supports a result, and which artifact was produced. Deterministic metric, data-quality, and rule engines are available when calculations must remain independent from the language model.
+
+## Product design
+
+DataScout is designed around confirmable data, observable execution, and deliverable results.
+
+Product materials (Chinese): [Full PRD](./docs/数探-Data-Analysis-Agent-PRD.md) · [Concise PRD](./docs/数探-Data-Analysis-Agent-PRD-精简版.md) · [Product Decisions](./docs/product-decisions.md)
 
 ## Highlights
 
 | Capability | Product value |
 | --- | --- |
-| Multi-source context | Analyze files, databases, online sheets, APIs, and local workspace data in one session |
-| Streaming AI analysis | Follow tool activity, tables, charts, reasoning status, retries, and follow-up questions |
-| 22 built-in skills | SQL, cleaning, regression, clustering, forecasting, visualization, reports, PowerPoint, and dashboards |
+| File-first data entry | Upload Excel / CSV files, then inspect sheets, fields, and sample rows; one session can manage multiple sources |
+| Conversational analysis | Ask questions in Chinese or English and follow analysis status, tool activity, tables, charts, and conclusions |
+| Controlled analysis tools | Use SQL, cleaning, statistics, and chart tools for analysis; data conclusions can be traced to execution results |
 | Visible data scope | Preview schemas and rows, then explicitly select the tables used by the current turn |
 | Deliverable outputs | Export datasets, Excel workbooks, reports, presentations, charts, and interactive dashboards |
 | Background jobs | Monitor progress, cancel long-running operations, recover results, and download artifacts |
@@ -55,7 +64,7 @@ flowchart LR
 Requirements: Python 3.10+. Node.js is only required when rebuilding the frontend.
 
 ```bash
-git clone https://github.com/uuuuuu11/data-analysis-agent.git
+git clone https://github.com/qrwuu/data-analysis-agent.git
 cd data-analysis-agent
 
 python -m venv .venv
@@ -103,6 +112,16 @@ The **Use sample data** action provides an immediate product walkthrough without
 - Google Sheets with a service account
 - HTTP APIs with no auth, Bearer Token, or `X-API-Key`
 - Local workspaces with explicit read-only or read/write permission
+
+## Extended analysis and delivery capabilities
+
+Beyond the file-analysis workflow, the project also provides advanced analysis and delivery capabilities that can be enabled as needed:
+
+- Data understanding and cleaning: profiling, missing-value handling, winsorizing, and outlier handling.
+- Query and visualization: read-only SQL queries, chart selection, and multiple chart types.
+- Statistics and modeling: decile analysis, feature screening, linear and logistic regression, decision trees, and K-Means.
+- Time series: ARIMA, SARIMA, Prophet, VAR, and GRU.
+- Delivery: funnel analysis, data exports, reports, presentations, and interactive dashboards.
 
 ## Architecture
 

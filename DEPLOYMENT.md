@@ -15,7 +15,7 @@
 ## 2. 准备配置
 
 ```bash
-git clone https://github.com/uuuuuu11/data-analysis-agent.git
+git clone https://github.com/qrwuu/data-analysis-agent.git
 cd data-analysis-agent
 cp .env.example .env
 cp Caddyfile.example Caddyfile
