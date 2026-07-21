@@ -4,103 +4,121 @@
   <img src="./static/Images/icon.png" alt="数探 Agent" width="112" />
 </p>
 
-<p align="center"><strong>把 Excel、数据库和业务 API 变成可追问、可验证、可交付的分析结果</strong></p>
+<p align="center">
+  <strong>把 Excel、数据库和业务 API 变成可追问、可验证、可交付的分析结果</strong>
+</p>
 
 <p align="center">
   <a href="./README_EN.md">English</a> ·
-  <a href="./docs/数探-Data-Analysis-Agent-PRD-精简版.md">投递精简 PRD</a> ·
-  <a href="./docs/数探-Data-Analysis-Agent-PRD.md">完整 PRD</a> ·
+  <a href="#快速开始">快速开始</a> ·
+  <a href="./docs/数探-Data-Analysis-Agent-PRD.md">产品 PRD</a> ·
   <a href="./DEMO_GUIDE.md">5 分钟体验</a> ·
+  <a href="./ARCHITECTURE.md">系统架构</a> ·
   <a href="./DEPLOYMENT.md">部署指南</a>
 </p>
 
-## 项目简介
+<p align="center">
+  <img alt="Python 3.10+" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
+  <img alt="Flask" src="https://img.shields.io/badge/Flask-Data%20API-111111?logo=flask&logoColor=white">
+  <img alt="Vite" src="https://img.shields.io/badge/Vite-Frontend-646CFF?logo=vite&logoColor=white">
+</p>
 
-数探是面向业务分析的对话式 AI 数据工作台。用户接入文件或数据源后，用自然语言提出问题；系统通过受控工具执行查询、清洗、统计和图表生成，并将数据范围、工具过程和结果放在同一会话中。
+## 这是什么
 
-它解决的不是“让模型回答一个问题”，而是让不会 SQL 的业务人员完成一次可核验的数据分析：**添加数据 → 确认字段 → 提出问题 → 真实执行 → 查看依据 → 继续追问**。
+数探 Agent 是一个面向业务分析的 AI 数据工作台。用户可以接入 Excel / CSV、SQL 数据库、Google Sheets 或 HTTP API，用自然语言提出问题，并在同一界面中完成数据预览、查询、统计分析、图表生成、结论追问和分析产物导出。
 
-![数探首页](./docs/images/homepage.png)
+它把一次分析拆成可观察的步骤：数据从哪里来、AI 调用了什么工具、查询得到了什么结果、图表基于哪些字段生成，都能在对话中直接核对。对需要稳定口径的场景，项目还提供确定性指标计算、数据质量检查和规则诊断能力，避免让模型代替程序做数值计算。
 
-## 核心能力
+## 产品设计
 
-| 能力 | 说明 |
+项目以“数据可确认、过程可观察、结果可交付”为主线设计数据分析体验，覆盖多源数据接入、对话式分析、受控工具执行、个人知识库、历史会话与结果交付。完整的产品目标、用户场景、功能规则、验收标准和评测口径见：[在线阅读 PRD](./docs/数探-Data-Analysis-Agent-PRD.md)。
+
+## 产品亮点
+
+| 能力 | 用户获得什么 |
 | --- | --- |
-| 对话式分析 | 使用中文或英文提出经营问题，支持连续追问、流式结果、停止与有限重试。 |
-| 多源数据接入 | Excel/CSV、SQL 数据库、Google Sheets、HTTP API、本地工作区和示例数据。 |
-| 可信执行 | 数据范围可见；SQL 只读校验；查询、统计、清洗和图表由工具执行。 |
-| 分析与交付 | 数据质量、聚合、趋势、建模、预测、图表、Excel、报告、PPT 和 Dashboard。 |
-| 分析资产复用 | 历史会话、个人知识库、指标口径、业务规则和个人偏好。 |
-| 长任务管理 | 解析、导出和长时分析可进入后台任务，支持查看状态、取消、恢复和下载。 |
+| 多源数据接入 | 上传 Excel / CSV，或连接 SQL、Google Sheets、HTTP API；一个会话可管理多个数据源 |
+| 对话式分析 | 用中文或英文直接提问，流式查看推理状态、工具执行、表格、图表与结论 |
+| 可控分析工具 | 22 个内置技能覆盖 SQL、清洗、回归、聚类、时间序列、图表、报告、PPT 和仪表盘 |
+| 数据上下文可见 | 在数据预览中检查表、字段和样例行，并明确本轮分析使用的数据表 |
+| 可交付结果 | 导出数据表、Excel、分析报告、PPT、图表和可交互仪表盘 |
+| 长任务管理 | 耗时操作进入后台任务队列，可查看进度、取消任务、恢复结果和下载产物 |
+| 知识与口径沉淀 | 管理指标定义、业务规则、背景知识和导入文件，让分析语言保持一致 |
+| 会话与偏好 | 保存、恢复、重命名历史分析；登录后持久化个人偏好与知识内容 |
+| 本地优先 | 数据解析、查询、产物和账号数据默认保存在本机指定目录，密钥不进入代码仓库 |
 
-## 为什么结果可核验
+## 一次分析如何完成
 
 ```mermaid
 flowchart LR
-    A[选择数据范围] --> B[自然语言提问]
-    B --> C[Agent 规划]
-    C --> D[受控工具执行]
-    D --> E[表格、图表与结论]
-    E --> F[追问、导出或保存]
+    A[接入数据] --> B[预览数据]
+    B --> C[自然语言提问]
+    C --> D[Agent 规划]
+    D --> E[执行分析]
+    E --> F[表格与图表]
+    F --> G[追问验证]
+    G --> H[导出交付]
+
+    classDef step fill:#F3F1FF,stroke:#8B5CF6,color:#1F2937,stroke-width:1px
+    class A,B,C,D,E,F,G,H step
 ```
 
-- 大模型负责理解问题、组织步骤和解释结果；工具负责实际查询、计算与验证。
-- 数值结论对应数据范围和工具结果；工具失败、数据不足或口径不清时展示真实状态。
-- 个人知识库沉淀指标定义、业务规则和背景知识，避免每次重新解释口径。
+## 界面能力
+
+- **智能分析**：连续对话、流式回复、停止生成、失败重试、建议追问和焦点模式。
+- **数据预览**：按数据源和数据表浏览字段、样例行及当前分析上下文。
+- **分析工具**：搜索并显式选择分析技能，也可让系统根据自然语言自动匹配。
+- **斜杠命令**：使用 `/data`、`/skills`、`/jobs`、`/knowledge`、`/sessions`、`/compact` 等命令快速操作。
+- **结果交互**：复制 Markdown、下载图表、查看工具执行状态，并基于现有结果继续追问。
+- **应用设置**：切换深浅主题与中英文界面，并管理助手偏好和个人工作习惯。
+- **工作目录**：挂载本地项目目录，选择只读或可编辑权限，让 Agent 在明确边界内读取数据和生成产物。
+- **MCP 与 Teams**：连接外部 MCP 服务，并通过可配置的轻量团队拆解复杂分析任务。
 
 ## 快速开始
 
-环境：Python 3.10+；修改前端时另需 Node.js 20.19+ 与 pnpm。
+### 环境要求
+
+- Python 3.10+
+- Windows、macOS 或 Linux
+- Node.js 20.19+ 与 pnpm 仅在修改或重新构建前端时需要
+
+### Windows
 
 ```powershell
-git clone https://github.com/qrwuu/data-analysis-agent.git
+git clone https://github.com/uuuuuu11/data-analysis-agent.git
 cd data-analysis-agent
 
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
 Copy-Item .env.example .env
 python app.py
 ```
 
-打开 <http://localhost:5001/>。完整部署、Docker 与生产配置见 [DEPLOYMENT.md](./DEPLOYMENT.md)。
+### macOS / Linux
+
+```bash
+git clone https://github.com/uuuuuu11/data-analysis-agent.git
+cd data-analysis-agent
+
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+cp .env.example .env
+python app.py
+```
+
+打开 <http://localhost:5001/>。健康检查地址为 <http://localhost:5001/api/health>。
 
 ## 模型服务配置
 
-部署数探时，在服务端的 `.env` 文件中配置兼容的模型服务、模型名称和访问密钥，再启动应用。模型配置仅在部署环境生效，不会暴露给浏览器；用户无需在页面中填写模型地址或密钥。
+部署数探时，在服务端的 `.env` 文件中配置兼容的模型服务、模型名称和访问密钥，再启动应用。模型配置仅在部署环境生效，不会暴露给浏览器。
 
-## 文档与验证
-
-| 文档 | 用途 |
-| --- | --- |
-| [投递精简 PRD](./docs/数探-Data-Analysis-Agent-PRD-精简版.md) | 10–15 页作品集阅读版本。 |
-| [完整 PRD](./docs/数探-Data-Analysis-Agent-PRD.md) | 完整需求、验收、风险与评测口径。 |
-| [架构说明](./ARCHITECTURE.md) | 系统模块、数据流与技术架构。 |
-| [离线评测](./evals/README.md) | 冻结数据集、Prompt A/B、指标与复现实验。 |
-| [安全策略](./SECURITY.md) | SQL、路径、浏览器和凭据安全基线。 |
-
-```bash
-python -m unittest discover -s Test -p "test_*.py" -v
-```
-
-## 数据与安全
-
-- 模型与外部数据源凭据仅在部署环境配置。
-- SQL 使用 AST 级只读校验，阻断写入和高风险语句。
-- 工作区屏蔽 `.env`、`.git`、`.ssh`、私钥等敏感路径。
-- 浏览器启用 CSP、同源写保护、内容类型保护和限制性权限策略。
-
-## 界面能力
-
-- **智能分析**：连续对话、流式回复、停止生成、失败重试和焦点模式。
-- **数据预览**：按数据源和数据表浏览字段、样例行及当前分析上下文。
-- **分析工具**：搜索并显式选择分析技能，也可根据自然语言自动匹配。
-- **斜杠命令**：使用 `/data`、`/skills`、`/jobs`、`/knowledge`、`/sessions`、`/compact` 等命令快速操作。
-- **结果交互**：复制 Markdown、下载图表、查看工具执行状态，并基于现有结果继续追问。
-- **应用设置**：切换深浅主题与中英文界面，并管理助手偏好和个人工作习惯。
-- **工作目录**：挂载本地项目目录，选择只读或可编辑权限，让 Agent 在明确边界内读取数据和生成产物。
-- **MCP 与 Teams**：连接外部 MCP 服务，并通过可配置的轻量团队拆解复杂分析任务。
+部署完成后，用户直接进入工作台即可上传数据并开始分析，无需单独填写模型地址或密钥。详细配置步骤见 [DEPLOYMENT.md](./DEPLOYMENT.md)。
 
 ## 使用方法
 
@@ -109,6 +127,8 @@ python -m unittest discover -s Test -p "test_*.py" -v
 3. 直接描述问题，或从「分析工具」中指定 SQL、图表、回归、聚类、时间序列等方法。
 4. 在回答中核对查询结果、图表和工具执行过程，并继续追问。
 5. 通过产物卡片下载 Excel、报告、PPT 或仪表盘；需要长期保留时保存分析会话。
+
+可以从这些问题开始：
 
 ```text
 按地区汇总销售额，并生成从高到低的柱状图。
@@ -124,11 +144,11 @@ python -m unittest discover -s Test -p "test_*.py" -v
 
 | 数据源 | 配置方式 |
 | --- | --- |
-| Excel / CSV | 选择或拖拽 `.xlsx`、`.xls`、`.csv` 文件。 |
-| SQL 数据库 | 提供 SQLAlchemy 连接字符串，支持 MySQL、PostgreSQL、SQLite、SQL Server 等。 |
-| Google Sheets | 提供表格 URL / ID 与服务账号 JSON，并将表格共享给该服务账号。 |
-| HTTP API | 提供返回表格型 JSON 数据的 URL，可配置 Bearer Token 或 `X-API-Key`。 |
-| 本地工作目录 | 挂载目录并设置只读或可编辑权限，直接使用其中的数据文件。 |
+| Excel / CSV | 选择或拖拽 `.xlsx`、`.xls`、`.csv` 文件 |
+| SQL 数据库 | 提供 SQLAlchemy 连接字符串，支持 MySQL、PostgreSQL、SQLite、SQL Server 等 |
+| Google Sheets | 提供表格 URL / ID 与服务账号 JSON，并将表格共享给该服务账号 |
+| HTTP API | 提供返回表格型 JSON 数据的 URL，可配置 Bearer Token 或 `X-API-Key` |
+| 本地工作目录 | 挂载目录并设置只读或可编辑权限，直接使用其中的数据文件 |
 
 ## 内置分析能力
 
@@ -143,14 +163,73 @@ python -m unittest discover -s Test -p "test_*.py" -v
 ## 技术架构
 
 ```mermaid
-flowchart LR
-    user[业务分析用户] --> web[Flask Web 应用]
-    web --> api[REST API / SSE]
-    api --> agent[Agent 编排与技能路由]
-    api --> sources[数据源与预览]
-    agent --> tools[受控工具执行]
-    agent -.-> model[部署者配置的模型服务]
-    tools --> data[DuckDB / 工作区 / 分析产物]
+flowchart TB
+    subgraph clientLayer["用户入口"]
+        direction LR
+        analyst["业务分析用户"]
+        admin["管理员"]
+    end
+
+    subgraph accessLayer["Web 与接口层"]
+        direction LR
+        web["Flask Web 应用"]
+        api["REST API / SSE"]
+    end
+
+    subgraph serviceLayer["业务服务层"]
+        direction LR
+        conversation["会话与上下文"]
+        dataSource["数据源与预览"]
+        preference["账号、偏好与知识库"]
+    end
+
+    subgraph agentLayer["智能分析 Agent 层"]
+        direction LR
+        guardrail["数据范围与 SQL 只读校验"]
+        orchestrator["Agent 编排"]
+        planner["技能路由与分析规划"]
+        executor["可信工具执行"]
+    end
+
+    subgraph runtimeLayer["数据与运行时"]
+        direction LR
+        model["部署者配置的模型服务"]
+        duckdb["DuckDB / 跨源查询"]
+        workspace["本地工作区"]
+        jobs["后台任务与分析产物"]
+    end
+
+    analyst --> web
+    admin --> web
+    web --> api
+    api --> conversation
+    api --> dataSource
+    api --> preference
+    conversation --> guardrail
+    dataSource --> guardrail
+    preference --> orchestrator
+    guardrail --> orchestrator
+    orchestrator --> planner --> executor
+    orchestrator -.-> model
+    executor --> duckdb
+    executor --> workspace
+    executor --> jobs
+
+    classDef client fill:#F3F1FF,stroke:#8B5CF6,color:#1F2937,stroke-width:1px
+    classDef access fill:#EFF6FF,stroke:#60A5FA,color:#1F2937,stroke-width:1px
+    classDef service fill:#FFFBEB,stroke:#FBBF24,color:#1F2937,stroke-width:1px
+    classDef agent fill:#ECFDF5,stroke:#34D399,color:#1F2937,stroke-width:1px
+    classDef runtime fill:#F8FAFC,stroke:#94A3B8,color:#1F2937,stroke-width:1px
+    class analyst,admin client
+    class web,api access
+    class conversation,dataSource,preference service
+    class guardrail,orchestrator,planner,executor agent
+    class model,duckdb,workspace,jobs runtime
+    style clientLayer fill:#FAFAFF,stroke:#C4B5FD,color:#374151
+    style accessLayer fill:#F8FBFF,stroke:#93C5FD,color:#374151
+    style serviceLayer fill:#FFFEF2,stroke:#FDE68A,color:#374151
+    style agentLayer fill:#F6FFFB,stroke:#A7F3D0,color:#374151
+    style runtimeLayer fill:#F8FAFC,stroke:#CBD5E1,color:#374151
 ```
 
 - **前端**：Flask 模板、模块化原生 JavaScript、Vue 渐进式交互岛、Vite 构建。
@@ -163,13 +242,26 @@ flowchart LR
 
 ## 项目结构
 
-`agent/` 负责 Agent 编排、工具、技能与上下文；`api/` 提供会话、数据源、模型、任务、知识库与导出接口；`data/` 负责数据源适配和持久化；`frontend/`、`static/` 与 `templates/` 提供界面资源；`Function/` 实现分析、清洗、图表和输出；`Test/` 提供回归测试；`demo_data/` 与 `data_templates/` 提供演示和模板数据。
+```text
+agent/            Agent 编排、工具、技能、命令与上下文管理
+api/              会话、数据源、模型、任务、知识库与导出 API
+data/             数据源适配、工作区、会话和持久化
+frontend/         前端源代码
+static/           可直接运行的浏览器资源与构建产物
+templates/        主工作台与仪表盘页面
+Function/         分析、清洗、图表和输出实现
+skills/           内置分析技能说明
+Test/             单元测试、接口测试和安全回归测试
+demo_data/        可直接体验的匿名示例数据
+data_templates/   订单、流量与广告数据模板
+```
 
 ## Docker 部署
 
 ```bash
 cp .env.example .env
 cp Caddyfile.example Caddyfile
+# 编辑 Caddyfile 中的域名和访问凭据
 docker compose up -d --build
 ```
 
@@ -187,3 +279,13 @@ pnpm quality
 ```
 
 项目包含接口、数据源、Agent 工具、任务队列、知识库、鉴权、安全策略、跨平台运行和前端交互等测试。
+
+## 数据与安全
+
+- 模型凭据由部署者在服务端环境中配置，不下发到浏览器，也不写入代码仓库。
+- SQL 查询使用 AST 级只读校验，阻止写入型语句进入分析流程。
+- 工作目录会屏蔽 `.env`、`.git`、`.ssh`、私钥等敏感路径。
+- 页面启用 CSP、同源写保护、内容类型保护和严格的浏览器权限策略。
+- 完成回答所需的提示词、表结构和相关数据会由服务端发送到部署者配置的模型服务；部署者可按自身的数据政策选择模型接入方式。
+
+安全报告方式见 [SECURITY.md](./SECURITY.md)。
