@@ -10,6 +10,7 @@
 
 <p align="center">
   <a href="./README_EN.md">English</a> ·
+  <a href="#项目介绍视频">项目介绍视频</a> ·
   <a href="#快速开始">快速开始</a> ·
   <a href="./docs/数探-Data-Analysis-Agent-PRD.md">完整 PRD</a> ·
   <a href="./docs/数探-Data-Analysis-Agent-PRD-精简版.md">PRD 精简版</a> ·
@@ -24,6 +25,10 @@
   <img alt="Flask" src="https://img.shields.io/badge/Flask-Data%20API-111111?logo=flask&logoColor=white">
   <img alt="Vite" src="https://img.shields.io/badge/Vite-Frontend-646CFF?logo=vite&logoColor=white">
 </p>
+
+## 项目介绍视频
+
+🎬 [观看 2 分 30 秒项目介绍视频](./95a2504eeb8f2877bab51f2af2605bd0.mp4)
 
 ## 这是什么
 
